@@ -9,35 +9,44 @@ Tower::Tower()
 	r = n;
 	counter = 1;
 	//put n in peg Start
+
 	for (int i = 0; i < n; i++)
 	{
-		Start.push(n - i);
+		peg[0].push(n - i);
 	}
 
-	hanoiStart(Start, Aux1, Aux2, Aux3, Aux4, Destination, counter);
+	hanoiStart();
 }
 
-
-void Tower::move(stack<int>& currentPeg, stack<int>& nextPeg, int& counter) {
-	int temp = currentPeg.top();
-	currentPeg.pop();
-	nextPeg.push(temp);
-	counter++;
-}
-
-void Tower::hanoiStart(stack<int>& start, stack<int>& aux1, stack<int>& aux2, stack<int>& aux3, stack<int>& aux4, stack<int>& dest, int& counter)
+void Tower::H1(int source, int dest, int & counter)
 {
-	move(start, source, counter);
-	// correct to here
-	H1(Start, Aux1, Aux3, Aux2, Aux4, Destination, counter);
-	/*
-	start  = Start
-	source = Aux1
-	dest   = Aux3
-	aux    = Aux2
-	last   = Aux4
-	*/
-	//move(dest, last, counter);
+	if (peg[source].size() == 1) {
+		for (int i = source; source < dest; i++) {
+			move(i, i + 1, counter);
+		}
+	}
+
+	if (peg[source].size() >= 2) {
+		for (int i = source; source < dest; i++) {
+			move(i, i + 1, counter);
+
+			//changes
+		}
+	}
+}
+
+void Tower::hanoiStart()
+{
+	H1(0, 5, counter);
+
+}
+
+void Tower::move(int currentPeg, int nextPeg, int & counter)
+{
+	int temp = peg[currentPeg].top();
+	peg[currentPeg].pop();
+	peg[nextPeg].push(temp);
+	counter++;
 }
 
 void Tower::display()
@@ -91,61 +100,7 @@ void Tower::display()
 
 }
 
-int Tower::H1((stack<int>& start, stack<int>& aux1, stack<int>& aux2, stack<int>& aux3, stack<int>& aux4, stack<int>& dest, int& counter)
-{
-	/*
-	start  = Start
-	source = Aux1
-	dest   = Aux3
-	aux    = Aux2
-	last   = Aux4
-	*/
-	if (source.size() == 1) {
-		move(source, aux, counter);
-		move(aux, dest, counter);
-	}
-	else if (source.size() == 2) {
-		move(source, aux, counter);
-		move(aux, dest, counter);
-		//checking
-	}
-
-	if (this->counter == 4) {
-		move(Start, source, this->counter);
-		move(source, aux, this->counter);
-		move(dest, aux, this->counter);
-		move(aux, source, this->counter);
-		move(aux, dest, this->counter);
-		if (this->r == 2) {
-			move(dest, last, this->counter);
-		}
-		move(source, aux, counter);
-		move(aux, dest, counter);
-	}
-
-	else if (source.size() > 2) {
-		counter = H1(start, source, dest, aux, last, last2, counter);
-		//if (this.hasItMoved[numOfDisks] != 1) 
-		if (source.empty()) {
-			move(start, source, counter);
-			//this.hasItMoved[numOfDisks] = 1;
-		}
-		move(source, aux, counter);
-		counter = H1(start, dest, source, aux, last, last2, counter);
-		move(aux, dest, counter);
-		if (!dest.empty()) {
-			move(dest, last, counter);
-		}
-		if (source.top() == r) {
-			r--;
-		}
-		counter = H1(Start, source, dest, aux, last, last2, counter);
-	};
-	return counter;
-}
-
 int main() {
-
 	Tower tower = Tower();
 	tower.display();
 
