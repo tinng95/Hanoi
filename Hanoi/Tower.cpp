@@ -18,14 +18,14 @@ Tower::Tower()
 }
 
 
-void Tower::move(stack<int>& source, stack<int>& dest, int& counter) {
-	int temp = source.top();
-	source.pop();
-	dest.push(temp);
+void Tower::move(stack<int>& currentPeg, stack<int>& nextPeg, int& counter) {
+	int temp = currentPeg.top();
+	currentPeg.pop();
+	nextPeg.push(temp);
 	counter++;
 }
 
-void Tower::hanoiStart(stack<int>& start, stack<int>& source, stack<int>& dest, stack<int>& aux, stack<int>& last, stack<int>& last2, int& counter)
+void Tower::hanoiStart(stack<int>& start, stack<int>& aux1, stack<int>& aux2, stack<int>& aux3, stack<int>& aux4, stack<int>& dest, int& counter)
 {
 	move(start, source, counter);
 	// correct to here
@@ -91,7 +91,7 @@ void Tower::display()
 
 }
 
-int Tower::H1(stack<int>& start, stack<int>& source, stack<int>& dest, stack<int>& aux, stack<int>& last, stack<int>& last2, int& counter)
+int Tower::H1((stack<int>& start, stack<int>& aux1, stack<int>& aux2, stack<int>& aux3, stack<int>& aux4, stack<int>& dest, int& counter)
 {
 	/*
 	start  = Start
