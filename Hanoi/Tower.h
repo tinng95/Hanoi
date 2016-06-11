@@ -33,7 +33,7 @@ private:
 	stack<int> peg[5];
 	int r;
 
-	int pegCount = 4;
+ 	int pegCount = 4;
 
 	int counter;
 	int n;

@@ -56,12 +56,12 @@ void Tower::move(int currentPeg, int destPeg, int & counter)
 			peg[currentPeg + 1].push(temp);
 			counter++;
 		}
-		if (currentPeg > destPeg) {
-			for (; currentPeg > destPeg; currentPeg--) {
-				int temp = peg[currentPeg].top();
-				peg[currentPeg].pop();
-				peg[currentPeg - 1].push(temp);
-				counter++;
+	if (currentPeg > destPeg) {
+		for (; currentPeg > destPeg; currentPeg--) {
+			int temp = peg[currentPeg].top();
+			peg[currentPeg].pop();
+			peg[currentPeg - 1].push(temp);
+			counter++;
 			}
 		}
 	}
@@ -116,7 +116,7 @@ void Tower::display()
 	}
 	cout << endl;
 
-}
+	}
 
 
 
