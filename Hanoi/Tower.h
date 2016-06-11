@@ -27,16 +27,14 @@ public:
 
 	void display();
 
+	void H2(int source, int dest, int & counter);
 private:
 
 	stack<int> peg[5];
 	int r;
-	stack<int> Start;
-	stack<int> Aux1;
-	stack<int> Aux2;
-	stack<int> Aux3;
-	stack<int> Aux4;
-	stack<int> Destination;
+
+ 	int pegCount = 4;
+
 	int counter;
 	int n;
 
